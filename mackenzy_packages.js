@@ -47,6 +47,7 @@ const packages = [
 ];
 
 let bookings = [];
+let promo = 0;
 
 module.exports = {
   // See all packages that a country have
@@ -90,14 +91,16 @@ module.exports = {
     if(inputDate.setHours(0,0,0,0) < today.setHours(0,0,0,0)) return console.log("Date cannot be in the past");
     const timeRegex = /^(?:2[0-3]|[01]?[0-9]):[0-5][0-9]$/;
     if(!timeRegex.test(time)) return console.log("Enter an actual time");
+    // if(promo == 0) promo = 1;
     bookings.push({
       bookRef: bookings.length + 1,
       packageId: packageId,
-      price: noPeople * package.price,
+      price: (noPeople * package.price * (1 - promo)).toFixed(2),
       noPeople: noPeople,
       date: date,
       time: time,
     });
+    promo = 1;
     return console.log("Book successfully\n");
   },
 
@@ -110,7 +113,7 @@ module.exports = {
       bookings
         .map(
           (b) =>
-            `Booking Ref: ${b.bookRef} \npackageId: ${b.packageId} \nDate:${b.date} \nNo of People:${b.noPeople} \nTotal Price:${b.price} \n `
+            `Booking Ref: ${b.bookRef} \npackageId: ${b.packageId} \nDate:${b.date} \nNo of People:${b.noPeople} \nTotal Price:\$${b.price} \n `
         )
         .join("\n")
     );
@@ -125,5 +128,23 @@ module.exports = {
     return console.log(
       `Booking ref: ${bookingRef}, Cancelled successfully. \n`
     );
+  },
+
+  // Use Gift / Promo code for discount
+  usePromoCode(code){
+    switch (code) {
+      case "NEWUSER":
+        promo = 0.1; // 10% discount
+        break;
+      case "WELCOME":
+        promo = 0.2; // 20% discount
+        break;
+      case "FORFUN":
+        promo = 0.3; // 30% discount
+        break;
+      default:
+        return console.log('No such Promo code \n');
+    };
+    return console.log('Promo code successfully redeem \n');
   },
 };
