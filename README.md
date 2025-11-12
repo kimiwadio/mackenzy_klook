@@ -4,7 +4,8 @@
 Klook: https://www.klook.com/
 
 # Setup
-Create a app.js file, to use the node module add \
+1. Make sure you have Node.js installed in your system
+2. Create a app.js file to use the module \
 `const klook = require("./mackenzy_klook.js");`
 
 # Functions
