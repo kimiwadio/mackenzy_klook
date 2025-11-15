@@ -9,8 +9,7 @@ Klook: https://www.klook.com/
 `const klook = require("./mackenzy_klook.js");`
 
 # Functions
-> [!IMPORTANT]
-> All parameters are ***required*** for functions with parameters in it.
+
 ## 1. searchPackagesByCountry(country)
 Purpose: View all packages for searched country
 
@@ -40,3 +39,14 @@ Params: Int
 Purpose: Redeeem Promo Code to get a discount for next booking
 
 Params: String
+
+### Example
+```
+const klook = require("./mackenzy_klook.js");
+klook.searchPackagesByCountry("Singapore");
+klook.viewPackageDetails("PKG001");
+klook.usePromoCode("NEWUSER");
+klook.bookPackage("PKG001",2,"2025/12/10","23:50");
+klook.listUserBooking();
+klook.cancelBooking(1);
+```

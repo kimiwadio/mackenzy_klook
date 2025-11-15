@@ -91,7 +91,6 @@ module.exports = {
     if(inputDate.setHours(0,0,0,0) < today.setHours(0,0,0,0)) return console.log("Date cannot be in the past");
     const timeRegex = /^(?:2[0-3]|[01]?[0-9]):[0-5][0-9]$/;
     if(!timeRegex.test(time)) return console.log("Enter an actual time");
-    // if(promo == 0) promo = 1;
     bookings.push({
       bookRef: bookings.length + 1,
       packageId: packageId,
